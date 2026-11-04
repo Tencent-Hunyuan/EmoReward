@@ -1,3 +1,5 @@
+import os
+
 import torch
 class PipelineParam:
     pipeline_name: str
@@ -34,7 +36,7 @@ flux_dev_pipe = PipelineParam(
     )
 
 flux_schnell_pipe = PipelineParam(
-        pipeline_name='/mnt2/share/huggingface_models/FLUX.1-schnell',
+        pipeline_name=os.getenv("FLUX_SCHNELL_MODEL_PATH") or "./ckpts/FLUX.1-schnell",
         generation_path=f'generation/flux_schnell',
         pipe_init_kwargs={
             "torch_dtype": torch.bfloat16,

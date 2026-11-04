@@ -17,23 +17,23 @@
 
 [Mingzhe Zheng](https://scholar.google.com/citations?user=U6bikksAAAAJ&hl=en)*1,2,
 [Yue Wu](https://scholar.google.com/citations?user=1xTR6qoAAAAJ&hl=en)‡2,
-Jing Tan2,
-Chang Zou2,
+[Jing Tan](https://sparkstj.github.io/)2,
+[Chang Zou](https://shenyi-z.github.io/)2,
 [Dengyang Jiang](https://scholar.google.com/citations?user=tJcxeMoAAAAJ&hl=en)1,
-Zeyue Tian1,
+[Zeyue Tian](https://scholar.google.com/citations?user=dghq4MQAAAAJ)1,
 [Xuanhua He](https://scholar.google.com/citations?user=-bDAN2YAAAAJ)1,
-Ryan Xu2,
-Yunyang Ge2,
-Sihui Ji2,
-Yunlong Lin2,
-Kaihang Pan2,
-Hongru Yan2,
-Sixiang Chen2,
-Dianyi Wang3,
-Julian Zhang4,
+[Ryan Xu](#)2,
+[Yunyang Ge](https://scholar.google.com/citations?user=bbgjlg0AAAAJ)2,
+[Sihui Ji](https://sihuiji.github.io/)2,
+[Yunlong Lin](https://lyl1015.github.io/)2,
+[Kaihang Pan](https://scholar.google.com/citations?user=lMQADDUAAAAJ)2,
+[Hongru Yan](#)2,
+[Sixiang Chen](https://ephemeral182.github.io/)2,
+[Dianyi Wang](https://scholar.google.com/citations?user=iP2HPFEAAAAJ)3,
+[Julian Zhang](#)4,
 [Weijie Kong](https://scholar.google.com/citations?hl=zh-CN&user=gsOklKAAAAAJ)2,
-Changlin Li2,
-Lanqing Guo2,
+[Changlin Li](https://scholar.google.com/citations?user=wOQjqCMAAAAJ)2,
+[Lanqing Guo](https://guolanqing.github.io/)2,
 [Zhao Zhong](https://scholar.google.com/citations?user=igtXP_kAAAAJ&hl=en)2,
 [Qifeng Chen](https://scholar.google.com/citations?user=lLMX9hcAAAAJ&hl=en)†1,
 [Harry Yang](https://scholar.google.com/citations?hl=en&user=jpIFgToAAAAJ&view_op=list_works)†1
@@ -51,20 +51,13 @@ EmoReward is a **self-evolving training mechanism** for emotional video-generati
 
 ## Highlights
 
-We cast emotional video-generation RL as a problem of **trusting the right emotional evidence**:
-emotion has no uniquely correct target, so a fixed reward is easy to game. EmoReward calibrates the
-reward *from the training run itself*, at two levels:
+We cast emotional video-generation RL as a problem of **trusting the right emotional evidence**: emotion is subjective, temporal, and easy to game with fixed reward proxies. Our three contributions turn training experience into reusable reward calibration.
 
-- **Core Problem:** Emotion is subjective, temporal, and gameable. Fixed VLM reward proxies give
-weak, exploitable guidance for *emotional* coherence — a generator can inflate a scalar with
-exaggerated faces, saturated colors, or abrupt motion while missing the intended affective arc.
-- **Within-video (instance-level):** *Reflective Reward Gating* grounds the prompt into an
-**EmoScript**, scores it with heterogeneous reward primitives, and uses phase-, conflict-, face-,
-and subtlety-aware gates to decide which primitives to trust — renormalizing over only the
-*active* providers so a missing face or saturated cue becomes a state signal, not noise.
-- **Across-run (experience-calibrated):** *RewardMemory* distills each primitive's reliability from
-a *completed* run's traces and exports bounded, closed-form multipliers that tilt the next run's
-fusion weights. The table is frozen during that run — **no gradient update to any reward model**.
+- **EmoReward — a self-evolving training mechanism.** We introduce a mechanism for emotional video-generation RL that calibrates heterogeneous reward providers within videos and across training runs, without updating reward-model parameters. Reflective Reward Gating uses phase, face, conflict, and subtlety cues to decide which evidence to trust for each video.
+
+- **RewardMemory — memory for multi-reward video generation.** We propose a memory that distills contextual evidence reliability from a completed run into bounded fusion-weight multipliers. These multipliers tilt reward allocation in the next run, while the memory table remains frozen during that run.
+
+- **Cross-run self-evolution — reusable training experience.** We introduce a paradigm for multimodal post-training in which a completed training run informs reward allocation in the next, making experience reusable at the run level. Experiments span three video RL algorithms and two image backbones, alongside ablations and human evaluations.
 
 ## Abstract
 
@@ -110,7 +103,7 @@ SD 3.5 and FLUX further support adaptive reward calibration for visual generatio
 ## Plan · Act · Reflect · Evolve
 
 EmoReward maps a prompt `p` and generated video `x` to a calibrated reward through four stages
-(mirrored on the [project page](https://dungeonmassster.github.io/EmoReward/)):
+(mirrored on the [project page](https://emoreward-project.github.io/)):
 
 ```
 Plan     p ──▶ EmoScript e(p)              target valence/arousal, AUs, body cues, expression window
@@ -161,7 +154,7 @@ weights change.
 ### 1. Clone and install dependencies
 
 ```bash
-git clone <your-fork-or-public-url>
+git clone https://github.com/Tencent-Hunyuan/EmoReward.git
 cd EmoReward
 pip install -r requirements.txt
 ```
@@ -198,6 +191,8 @@ EmoReward needs three groups of weights, all resolved under `./ckpts` and inside
 > is redistributed, so the pipeline still imports and runs for a smoke test. Download the providers
 > you need for full emotional fidelity.
 
+For the base-model setup, see the upstream [SAGE-GRPO checkpoint guide](https://github.com/Tencent-Hunyuan/SAGE-GRPO/blob/master/checkpoints-download.md). The optional HPSv3/COHP FLUX.1-schnell model uses `./ckpts/FLUX.1-schnell` (override with `FLUX_SCHNELL_MODEL_PATH`); its download command is in [checkpoints-download.md](./checkpoints-download.md#optional-flux1-schnell-for-hpsv3cohp).
+
 ### Expected checkpoint layout
 
 ```text
@@ -206,7 +201,8 @@ ckpts/
 ├── vae/
 ├── text_encoder/           # MLLM + byT5 (see checkpoints-download.md)
 ├── vision_encoder/siglip/
-└── VideoReward/            # general video reward (VideoAlign); or set VIDEOALIGN_MODEL_PATH
+├── VideoReward/            # general video reward (VideoAlign); or set VIDEOALIGN_MODEL_PATH
+└── FLUX.1-schnell/         # optional HPSv3/COHP; or set FLUX_SCHNELL_MODEL_PATH
 ```
 
 ## Quickstart: Train with EmoReward
@@ -320,7 +316,7 @@ group `G=4`. Constraint:
 ## Visual Results
 
 Qualitative comparison clips live under `assets/Visual_Results/`; the
-[project page](https://dungeonmassster.github.io/EmoReward/) plays them side by side. Clips are
+[project page](https://emoreward-project.github.io/) plays them side by side. Clips are
 labeled with the webpage's conventions:
 
 - **GT** — the pretrained generator, no RL.

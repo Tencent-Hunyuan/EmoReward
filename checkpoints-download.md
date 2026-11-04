@@ -1,6 +1,8 @@
 
 # Download the pretrained checkpoints:
 
+The base-model layout follows the upstream [SAGE-GRPO checkpoint guide](https://github.com/Tencent-Hunyuan/SAGE-GRPO/blob/master/checkpoints-download.md). Run the commands below from the EmoReward repository root. Emotional-reward provider weights are documented separately in [REWARD_SUBPACKAGES.md](./REWARD_SUBPACKAGES.md).
+
 First, make sure you have installed the huggingface CLI and modelscope CLI.
 
 ```bash
@@ -79,3 +81,43 @@ Note: If an `No such file or directory: 'ckpts/.huggingface/.gitignore.lock'` li
 process, you can ignore the error and rerun the download command.
 
 </details>
+
+
+## VideoReward / VideoAlign
+
+Download the general video-reward checkpoint into `./ckpts/VideoReward`:
+
+```bash
+bash download_weights.sh
+```
+
+The VideoAlign scorer also accepts `VIDEOALIGN_MODEL_PATH` to reuse an existing checkpoint.
+
+## Optional FLUX.1-schnell for HPSv3/COHP
+
+The bundled HPSv3/COHP image-generation utility has an optional FLUX.1-schnell pipeline.
+It is separate from the HunyuanVideo training checkpoints described in the
+[SAGE-GRPO guide](https://github.com/Tencent-Hunyuan/SAGE-GRPO/blob/master/checkpoints-download.md).
+Its standard local path is `./ckpts/FLUX.1-schnell`; set `FLUX_SCHNELL_MODEL_PATH`
+to reuse another local directory or a Hugging Face model ID.
+
+Review the access conditions on the [official model page](https://huggingface.co/black-forest-labs/FLUX.1-schnell)
+and sign in with `hf auth login` if required, then download from the repository root:
+
+```bash
+hf download black-forest-labs/FLUX.1-schnell --local-dir ./ckpts/FLUX.1-schnell
+```
+
+Alternatively, download VideoReward and this optional checkpoint together:
+
+```bash
+DOWNLOAD_FLUX_SCHNELL=1 bash download_weights.sh
+```
+
+To use an existing local copy, set the override before launching the HPSv3/COHP utility:
+
+```bash
+export FLUX_SCHNELL_MODEL_PATH=/path/to/FLUX.1-schnell
+```
+
+Model weights remain excluded from Git.
