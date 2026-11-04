@@ -196,3 +196,7 @@ hyvideo/models/reward_models/*/CLIP-AUTT/
 hyvideo/models/reward_models/*/R1-Omni/
 hyvideo/models/reward_models/*/OpenFace-3.0/
 hyvideo/models/reward_models/*/facial-landmarks-recognition/
+# Curated website media referenced by the README and visual-results gallery.
+!assets/Visual_Results/*.mp4
+!assets/Visual_Results/*.jpg
+!assets/Visual_Results/*.png

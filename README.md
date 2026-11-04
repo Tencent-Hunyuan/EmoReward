@@ -1,53 +1,22 @@
-![](./assets/Figure/logo_color.png)
+<p align="center">
+  <img src="./assets/Figure/logo_color.png" width="240" alt="EmoReward logo">
+</p>
 
-##### EmoReward: Self-Evolving Reward Calibration for Emotional Video Generation RL
+<h3 align="center">EmoReward: Self-Evolving Reward Calibration for Emotional Video Generation RL</h3>
 
+[![Project Page](https://img.shields.io/badge/Project-Page-ff6f61.svg)](https://emoreward-project.github.io/) [![PyTorch](https://img.shields.io/badge/PyTorch-2.6%2B-ee4c2c.svg)](https://pytorch.org/) [![Transformers](https://img.shields.io/badge/Transformers-4.57.1-yellow.svg)](https://github.com/huggingface/transformers) [![Diffusers](https://img.shields.io/badge/Diffusers-0.35.0-blue.svg)](https://github.com/huggingface/diffusers) [![Base Model](https://img.shields.io/badge/Base%20Model-HunyuanVideo--1.5-6a5acd.svg)](https://github.com/Tencent-Hunyuan/HunyuanVideo) [![RL Backbone](https://img.shields.io/badge/RL%20Backbone-SAGE--GRPO-0ea5e9.svg)](https://github.com/Tencent-Hunyuan/SAGE-GRPO)
 
+[Mingzhe Zheng](https://mingzhezheng.homes/)<sup>1,2,&ast;</sup>, [Yue Wu](https://scholar.google.com/citations?user=1xTR6qoAAAAJ&hl=en)<sup>2,&Dagger;</sup>, [Jing Tan](https://sparkstj.github.io/)<sup>2</sup>, [Chang Zou](https://shenyi-z.github.io/)<sup>2</sup>, [Dengyang Jiang](https://scholar.google.com/citations?user=tJcxeMoAAAAJ&hl=en)<sup>1</sup>, [Zeyue Tian](https://scholar.google.com/citations?user=dghq4MQAAAAJ)<sup>1</sup>, [Xuanhua He](https://scholar.google.com/citations?user=-bDAN2YAAAAJ)<sup>1</sup>, [Ryan Xu](#)<sup>2</sup>, [Yunyang Ge](https://scholar.google.com/citations?user=bbgjlg0AAAAJ)<sup>2</sup>, [Sihui Ji](https://sihuiji.github.io/)<sup>2</sup>, [Yunlong Lin](https://lyl1015.github.io/)<sup>2</sup>, [Kaihang Pan](https://scholar.google.com/citations?user=lMQADDUAAAAJ)<sup>2</sup>, [Hongru Yan](#)<sup>2</sup>, [Sixiang Chen](https://ephemeral182.github.io/)<sup>2</sup>, [Dianyi Wang](https://scholar.google.com/citations?user=iP2HPFEAAAAJ)<sup>3</sup>, [Julian Zhang](#)<sup>4</sup>, [Weijie Kong](https://scholar.google.com/citations?hl=zh-CN&user=gsOklKAAAAAJ)<sup>2</sup>, [Changlin Li](https://scholar.google.com/citations?user=wOQjqCMAAAAJ)<sup>2</sup>, [Lanqing Guo](https://guolanqing.github.io/)<sup>2</sup>, [Zhao Zhong](https://scholar.google.com/citations?user=igtXP_kAAAAJ&hl=en)<sup>2</sup>, [Qifeng Chen](https://scholar.google.com/citations?user=lLMX9hcAAAAJ&hl=en)<sup>1,&dagger;</sup>, [Harry Yang](https://scholar.google.com/citations?hl=en&user=jpIFgToAAAAJ&view_op=list_works)<sup>1,&dagger;</sup>
 
-![Project Page](https://img.shields.io/badge/Project-Page-ff6f61.svg)
-![PyTorch](https://img.shields.io/badge/PyTorch-2.6%2B-ee4c2c.svg)
-![Transformers](https://img.shields.io/badge/Transformers-4.57.1-yellow.svg)
-![Diffusers](https://img.shields.io/badge/Diffusers-0.35.0-blue.svg)
-![Base Model](https://img.shields.io/badge/Base%20Model-HunyuanVideo--1.5-6a5acd.svg)
-![RL Backbone](https://img.shields.io/badge/RL%20Backbone-SAGE--GRPO-0ea5e9.svg)
-
-
-
-
-
-[Mingzhe Zheng](https://scholar.google.com/citations?user=U6bikksAAAAJ&hl=en)*1,2,
-[Yue Wu](https://scholar.google.com/citations?user=1xTR6qoAAAAJ&hl=en)‡2,
-[Jing Tan](https://sparkstj.github.io/)2,
-[Chang Zou](https://shenyi-z.github.io/)2,
-[Dengyang Jiang](https://scholar.google.com/citations?user=tJcxeMoAAAAJ&hl=en)1,
-[Zeyue Tian](https://scholar.google.com/citations?user=dghq4MQAAAAJ)1,
-[Xuanhua He](https://scholar.google.com/citations?user=-bDAN2YAAAAJ)1,
-[Ryan Xu](#)2,
-[Yunyang Ge](https://scholar.google.com/citations?user=bbgjlg0AAAAJ)2,
-[Sihui Ji](https://sihuiji.github.io/)2,
-[Yunlong Lin](https://lyl1015.github.io/)2,
-[Kaihang Pan](https://scholar.google.com/citations?user=lMQADDUAAAAJ)2,
-[Hongru Yan](#)2,
-[Sixiang Chen](https://ephemeral182.github.io/)2,
-[Dianyi Wang](https://scholar.google.com/citations?user=iP2HPFEAAAAJ)3,
-[Julian Zhang](#)4,
-[Weijie Kong](https://scholar.google.com/citations?hl=zh-CN&user=gsOklKAAAAAJ)2,
-[Changlin Li](https://scholar.google.com/citations?user=wOQjqCMAAAAJ)2,
-[Lanqing Guo](https://guolanqing.github.io/)2,
-[Zhao Zhong](https://scholar.google.com/citations?user=igtXP_kAAAAJ&hl=en)2,
-[Qifeng Chen](https://scholar.google.com/citations?user=lLMX9hcAAAAJ&hl=en)†1,
-[Harry Yang](https://scholar.google.com/citations?hl=en&user=jpIFgToAAAAJ&view_op=list_works)†1
-
-1HKUST   2Tencent Hunyuan   3Fudan University   4University of Waterloo  
-*Equal contribution   †Corresponding Authors   ‡Project Leader  
-Work done during internship at Tencent Hunyuan
-
+<sup>1</sup>HKUST &nbsp; <sup>2</sup>Tencent Hunyuan &nbsp; <sup>3</sup>Fudan University &nbsp; <sup>4</sup>University of Waterloo<br> <sup>&ast;</sup>Equal contribution &nbsp; <sup>&dagger;</sup>Corresponding Authors &nbsp; <sup>&Dagger;</sup>Project Leader<br> Work done during internship at Tencent Hunyuan
 
 
 EmoReward is a **self-evolving training mechanism** for emotional video-generation RL. It distills *evidence reliability* from reward traces collected during an actual training run, then uses it to guide multi-reward weight allocation in the next run — deciding which emotional evidence to trust and how much to weight it, **without updating any reward model**. Within a video it calibrates heterogeneous cues per instance (**Reflective Reward Gating**); across runs it fixes bounded, experience-derived multipliers (**RewardMemory**). It plugs into SAGE-GRPO training on HunyuanVideo-1.5 as a drop-in reward, fused with general video rewards, and transfers to DanceGRPO, FlowGRPO, and image backbones (SD 3.5, FLUX).
 
   
 
+
+![EmoReward motivation: calibrating emotional evidence](./assets/Visual_Results/motivation.png)
 
 ## Highlights
 
@@ -88,6 +57,8 @@ SD 3.5 and FLUX further support adaptive reward calibration for visual generatio
 
 ## Table of Contents
 
+- [Highlights](#highlights)
+- [Abstract](#abstract)
 - [Plan · Act · Reflect · Evolve](#plan--act--reflect--evolve)
 - [Installation](#installation)
 - [Checkpoint & Reward-Provider Preparation](#checkpoint--reward-provider-preparation)
@@ -101,6 +72,8 @@ SD 3.5 and FLUX further support adaptive reward calibration for visual generatio
 - [Citation](#citation)
 
 ## Plan · Act · Reflect · Evolve
+
+![Four-stage EmoReward framework: Plan, Act, Reflect, and Evolve](./assets/Visual_Results/overview.png)
 
 EmoReward maps a prompt `p` and generated video `x` to a calibrated reward through four stages
 (mirrored on the [project page](https://emoreward-project.github.io/)):
@@ -315,18 +288,34 @@ group `G=4`. Constraint:
 
 ## Visual Results
 
-Qualitative comparison clips live under `assets/Visual_Results/`; the
-[project page](https://emoreward-project.github.io/) plays them side by side. Clips are
-labeled with the webpage's conventions:
+The previews below link to the original MP4 clips in [assets/Visual_Results](./assets/Visual_Results/README.md). Click a preview to open its video. For synchronized side-by-side playback and the full generation prompts, visit the [project page](https://emoreward-project.github.io/#visual-results).
 
 - **GT** — the pretrained generator, no RL.
-- **Baseline** — the RL optimizer (DanceGRPO / FlowGRPO / SAGE-GRPO) with its default reward.
-- **Reflect (without RewardMemory)** — EmoReward Stage 1 (Reflective Reward Gating, `m_k = 1`).
-- **EmoReward** — the full method (Reflect + frozen RewardMemory table).
+- **Baseline** — the RL algorithm with its default reward.
+- **Reflect (without RewardMemory)** — instance-level gating with unit memory multipliers.
+- **EmoReward** — Reflect composed with the frozen RewardMemory table.
 
-The page also shows the reward-policy comparison (VideoAlign only / single provider / random /
-round-robin / fixed fusion / Reflect / EmoReward) and the provider-pool ablation, matching the
-[Reward Policies](#reward-policies-ablation-ladder) table above.
+### Pretrained generator and EmoReward
+
+| GT (pretrained, no RL) | EmoReward |
+| --- | --- |
+| [<img src="./assets/Visual_Results/backstage-1.jpg" alt="GT (pretrained, no RL)" width="360">](./assets/Visual_Results/backstage-1.mp4?raw=true) | [<img src="./assets/Visual_Results/backstage-2.jpg" alt="EmoReward" width="360">](./assets/Visual_Results/backstage-2.mp4?raw=true) |
+
+### Across video RL algorithms
+
+| RL algorithm | Baseline | Reflect (without RewardMemory) | EmoReward |
+| --- | --- | --- | --- |
+| DanceGRPO | [<img src="./assets/Visual_Results/dance-1.jpg" alt="Baseline" width="220">](./assets/Visual_Results/dance-1.mp4?raw=true) | [<img src="./assets/Visual_Results/dance-3.jpg" alt="Reflect (without RewardMemory)" width="220">](./assets/Visual_Results/dance-3.mp4?raw=true) | [<img src="./assets/Visual_Results/dance-2.jpg" alt="EmoReward" width="220">](./assets/Visual_Results/dance-2.mp4?raw=true) |
+| FlowGRPO | [<img src="./assets/Visual_Results/flow-1.jpg" alt="Baseline" width="220">](./assets/Visual_Results/flow-1.mp4?raw=true) | [<img src="./assets/Visual_Results/flow-3.jpg" alt="Reflect (without RewardMemory)" width="220">](./assets/Visual_Results/flow-3.mp4?raw=true) | [<img src="./assets/Visual_Results/flow-2.jpg" alt="EmoReward" width="220">](./assets/Visual_Results/flow-2.mp4?raw=true) |
+| SAGE-GRPO | [<img src="./assets/Visual_Results/sage-1.jpg" alt="Baseline" width="220">](./assets/Visual_Results/sage-1.mp4?raw=true) | [<img src="./assets/Visual_Results/sage-3.jpg" alt="Reflect (without RewardMemory)" width="220">](./assets/Visual_Results/sage-3.mp4?raw=true) | [<img src="./assets/Visual_Results/sage-2.jpg" alt="EmoReward" width="220">](./assets/Visual_Results/sage-2.mp4?raw=true) |
+
+### With and without RewardMemory
+
+| Reflect (without RewardMemory) | EmoReward |
+| --- | --- |
+| [<img src="./assets/Visual_Results/memory-2.jpg" alt="Reflect (without RewardMemory)" width="360">](./assets/Visual_Results/memory-2.mp4?raw=true) | [<img src="./assets/Visual_Results/memory-1.jpg" alt="EmoReward" width="360">](./assets/Visual_Results/memory-1.mp4?raw=true) |
+
+The [complete local gallery](./assets/Visual_Results/README.md) includes all 25 clips, their poster frames, and the available full prompts. It also covers the [reward-policy comparison](./assets/Visual_Results/README.md#reward-policy-comparison) and [provider-pool ablation](./assets/Visual_Results/README.md#provider-pool-ablation). Media is reused byte-for-byte from the [deployed project website repository](https://github.com/emoreward-project/emoreward-project.github.io).
 
 ## Repository Layout
 
@@ -351,7 +340,7 @@ EmoReward/
 │           ├── motion_naturalness.py # kinetic / motion primitive
 │           ├── gemini_planner.py     # optional external Plan backend
 │           └── {CLIP-AUTT, R1-Omni, OpenFace-3.0, facial-landmarks-recognition}/  # external (setup script)
-├── assets/Visual_Results/            # qualitative comparison clips (see below)
+├── assets/Visual_Results/            # 25 MP4s, poster frames, method figures, and gallery README
 ├── REWARD_SUBPACKAGES.md             # provider code + weight download guide
 └── checkpoints-download.md           # base model + VideoReward download guide
 ```
