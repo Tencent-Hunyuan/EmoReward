@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/Figure/logo_color.png" width="240" alt="EmoReward logo">
+  <img src="./assets/Figure/logo_color.png" width="200" height="200" alt="EmoReward logo">
 </p>
 
 <h3 align="center">EmoReward: Self-Evolving Reward Calibration for Emotional Video Generation RL</h3>
@@ -11,7 +11,7 @@
 <sup>1</sup>HKUST &nbsp; <sup>2</sup>Tencent Hunyuan &nbsp; <sup>3</sup>Fudan University &nbsp; <sup>4</sup>University of Waterloo<br> <sup>&ast;</sup>Equal contribution &nbsp; <sup>&dagger;</sup>Corresponding Authors &nbsp; <sup>&Dagger;</sup>Project Leader<br> Work done during internship at Tencent Hunyuan
 
 
-EmoReward is a **self-evolving training mechanism** for emotional video-generation RL. It distills *evidence reliability* from reward traces collected during an actual training run, then uses it to guide multi-reward weight allocation in the next run — deciding which emotional evidence to trust and how much to weight it, **without updating any reward model**. Within a video it calibrates heterogeneous cues per instance (**Reflective Reward Gating**); across runs it fixes bounded, experience-derived multipliers (**RewardMemory**). It plugs into SAGE-GRPO training on HunyuanVideo-1.5 as a drop-in reward, fused with general video rewards, and transfers to DanceGRPO, FlowGRPO, and image backbones (SD 3.5, FLUX).
+EmoReward is a **self-evolving training mechanism** for emotional video-generation RL. It distills *evidence reliability* from reward traces collected during an actual training run, then uses it to guide multi-reward weight allocation in the next run — deciding which emotional evidence to trust and how much to weight it, **without updating any reward model**. Within a video it calibrates heterogeneous cues per instance (**Reflective Reward Gating**); across runs it fixes bounded, experience-derived multipliers (**RewardMemory**). It plugs into SAGE-GRPO training on HunyuanVideo-1.5 as a drop-in reward, fused with general video rewards, and transfers to DanceGRPO and FlowGRPO. More information and a visual gallery are available on the [webpage](https://emoreward-project.github.io/).
 
   
 
@@ -65,7 +65,6 @@ SD 3.5 and FLUX further support adaptive reward calibration for visual generatio
 - [Quickstart: Train with EmoReward](#quickstart-train-with-emoreward)
 - [Reward Policies (Ablation Ladder)](#reward-policies-ablation-ladder)
 - [Key Parameters](#key-parameters)
-- [Visual Results](#visual-results)
 - [Repository Layout](#repository-layout)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
@@ -285,37 +284,6 @@ group `G=4`. Constraint:
 > **Planner credentials:** the Gemini Plan backend (optional, off by default) reads gateway keys
 > from `EMO_REWARD_PLAN_API_APP_IDS` and `EMO_REWARD_PLAN_API_KEY_<app_id>`. No credentials are
 > shipped in this repo.
-
-## Visual Results
-
-The previews below link to the original MP4 clips in [assets/Visual_Results](./assets/Visual_Results/README.md). Click a preview to open its video. For synchronized side-by-side playback and the full generation prompts, visit the [project page](https://emoreward-project.github.io/#visual-results).
-
-- **GT** — the pretrained generator, no RL.
-- **Baseline** — the RL algorithm with its default reward.
-- **Reflect (without RewardMemory)** — instance-level gating with unit memory multipliers.
-- **EmoReward** — Reflect composed with the frozen RewardMemory table.
-
-### Pretrained generator and EmoReward
-
-| GT (pretrained, no RL) | EmoReward |
-| --- | --- |
-| [<img src="./assets/Visual_Results/backstage-1.jpg" alt="GT (pretrained, no RL)" width="360">](./assets/Visual_Results/backstage-1.mp4?raw=true) | [<img src="./assets/Visual_Results/backstage-2.jpg" alt="EmoReward" width="360">](./assets/Visual_Results/backstage-2.mp4?raw=true) |
-
-### Across video RL algorithms
-
-| RL algorithm | Baseline | Reflect (without RewardMemory) | EmoReward |
-| --- | --- | --- | --- |
-| DanceGRPO | [<img src="./assets/Visual_Results/dance-1.jpg" alt="Baseline" width="220">](./assets/Visual_Results/dance-1.mp4?raw=true) | [<img src="./assets/Visual_Results/dance-3.jpg" alt="Reflect (without RewardMemory)" width="220">](./assets/Visual_Results/dance-3.mp4?raw=true) | [<img src="./assets/Visual_Results/dance-2.jpg" alt="EmoReward" width="220">](./assets/Visual_Results/dance-2.mp4?raw=true) |
-| FlowGRPO | [<img src="./assets/Visual_Results/flow-1.jpg" alt="Baseline" width="220">](./assets/Visual_Results/flow-1.mp4?raw=true) | [<img src="./assets/Visual_Results/flow-3.jpg" alt="Reflect (without RewardMemory)" width="220">](./assets/Visual_Results/flow-3.mp4?raw=true) | [<img src="./assets/Visual_Results/flow-2.jpg" alt="EmoReward" width="220">](./assets/Visual_Results/flow-2.mp4?raw=true) |
-| SAGE-GRPO | [<img src="./assets/Visual_Results/sage-1.jpg" alt="Baseline" width="220">](./assets/Visual_Results/sage-1.mp4?raw=true) | [<img src="./assets/Visual_Results/sage-3.jpg" alt="Reflect (without RewardMemory)" width="220">](./assets/Visual_Results/sage-3.mp4?raw=true) | [<img src="./assets/Visual_Results/sage-2.jpg" alt="EmoReward" width="220">](./assets/Visual_Results/sage-2.mp4?raw=true) |
-
-### With and without RewardMemory
-
-| Reflect (without RewardMemory) | EmoReward |
-| --- | --- |
-| [<img src="./assets/Visual_Results/memory-2.jpg" alt="Reflect (without RewardMemory)" width="360">](./assets/Visual_Results/memory-2.mp4?raw=true) | [<img src="./assets/Visual_Results/memory-1.jpg" alt="EmoReward" width="360">](./assets/Visual_Results/memory-1.mp4?raw=true) |
-
-The [complete local gallery](./assets/Visual_Results/README.md) includes all 25 clips, their poster frames, and the available full prompts. It also covers the [reward-policy comparison](./assets/Visual_Results/README.md#reward-policy-comparison) and [provider-pool ablation](./assets/Visual_Results/README.md#provider-pool-ablation). Media is reused byte-for-byte from the [deployed project website repository](https://github.com/emoreward-project/emoreward-project.github.io).
 
 ## Repository Layout
 

@@ -2,7 +2,7 @@
 
 Original videos, poster frames, and method figures reused from the [project website repository](https://github.com/emoreward-project/emoreward-project.github.io). Media bytes are unchanged.
 
-Click a poster to open its MP4, or use the project page for synchronized playback. [Return to the main README](../../README.md#visual-results).
+Click a poster to open its MP4, or use the project page for synchronized playback. [Return to the main README](../../README.md).
 
 - **GT**: the pretrained generator, without RL.
 - **Baseline**: the corresponding RL algorithm with its default reward.
