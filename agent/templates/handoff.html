@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Integration handoff template · EmoReward agents</title><style>body{font:16px/1.65 system-ui,sans-serif;color:#1f2937;background:#f6f8fb;margin:0}main{max-width:1020px;margin:32px auto;background:white;padding:32px;border:1px solid #dae0e8;border-radius:12px}a{color:#1555a2}nav{display:flex;flex-wrap:wrap;gap:8px 20px;border-bottom:1px solid #dae0e8;padding-bottom:16px}h1,h2,h3{line-height:1.25}h2{margin-top:30px}code,pre{background:#f1f4f9;border-radius:5px}code{padding:2px 4px}pre{padding:16px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid #d5dce5;padding:8px 12px;text-align:left;vertical-align:top}.note{border-left:3px solid #486ab5;padding:8px 16px;background:#f4f7fd}.routes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}.route{border:1px solid #dae0e8;border-radius:8px;padding:16px}small{color:#64748b}@media(max-width:600px){main{margin:0;border:0;padding:20px}}</style></head><body><main><nav aria-label="Agent navigation"><a href="../index.html">Agent hub</a></nav><h1>Integration handoff template</h1>
+<p>Copy this HTML into the host's chosen artifact directory and fill it with observed facts. The initial status is not_run. Retain the JSON block for agent-to-agent exchange; render the corresponding evidence for review.</p>
+<section id="decision"><h2>Integration decision</h2><p>Record the host reward boundary, selected modality adapter, scorer lifetime, configuration, source revision and files changed.</p></section>
+<section id="evidence"><h2>Evidence</h2><table><thead><tr><th>Check</th><th>Status</th><th>Command / observation / artifact</th></tr></thead><tbody><tr><td>Source, interface, real scoring, training</td><td>not_run</td><td>No evidence recorded yet.</td></tr></tbody></table></section>
+<section id="limits"><h2>Limits and next actions</h2><p>Distinguish missing prerequisites from failed checks. Describe any changed semantics, provider fallback or unsupported claim.</p></section>
+<script type="application/json" id="emoreward-handoff">{
+  "format": "emoreward-integration-handoff/v1",
+  "status": "not_run",
+  "upstream": {
+    "repository": "https://github.com/Tencent-Hunyuan/EmoReward",
+    "commit": "8060b0ca5d08d4127002c49faa764ad5b9a2ca5e"
+  },
+  "host": {
+    "repository": "",
+    "modality": "",
+    "reward_seam": "",
+    "sample_grouping": "",
+    "reward_owner": ""
+  },
+  "configuration": {
+    "metric": "emo_total",
+    "provider_inventory": [],
+    "planner_backend": "",
+    "timing": {},
+    "memory_table": {
+      "path": "",
+      "sha256": "",
+      "outcome_source": ""
+    }
+  },
+  "changes": [],
+  "checks": [],
+  "limitations": [],
+  "next_actions": []
+}</script>
+</main></body></html>

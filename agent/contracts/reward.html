@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Scoring contract · EmoReward agents</title><style>body{font:16px/1.65 system-ui,sans-serif;color:#1f2937;background:#f6f8fb;margin:0}main{max-width:1020px;margin:32px auto;background:white;padding:32px;border:1px solid #dae0e8;border-radius:12px}a{color:#1555a2}nav{display:flex;flex-wrap:wrap;gap:8px 20px;border-bottom:1px solid #dae0e8;padding-bottom:16px}h1,h2,h3{line-height:1.25}h2{margin-top:30px}code,pre{background:#f1f4f9;border-radius:5px}code{padding:2px 4px}pre{padding:16px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid #d5dce5;padding:8px 12px;text-align:left;vertical-align:top}.note{border-left:3px solid #486ab5;padding:8px 16px;background:#f4f7fd}.routes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}.route{border:1px solid #dae0e8;border-radius:8px;padding:16px}small{color:#64748b}@media(max-width:600px){main{margin:0;border:0;padding:20px}}</style></head><body><main><nav aria-label="Agent navigation"><a href="../index.html">Agent hub</a></nav><h1>Scoring contract</h1>
+
+<section id="boundary"><h2>Existing boundary</h2><p><a href="../references/code-map.html#scoring">emo_reward_score(device, config=None)</a> creates one reusable callable. Call it with <code>(video_paths, prompts, metadata)</code>; it returns <code>(scores, auxiliary)</code>. The batch scorer's auxiliary mapping is currently empty, so it is not a validity report.</p>
+<pre>reward_fn = emo_reward_score(device=device, config=config)
+scores, auxiliary = reward_fn(video_paths, prompts, metadata)
+reward_vector = scores["emo_total"]</pre>
+<table><thead><tr><th>Input or output</th><th>Porting requirement</th></tr></thead><tbody>
+<tr><td>video_paths</td><td>Ordered local video-file paths, not generator latent tensors or image tensors. Export/decode through the host's existing media boundary.</td></tr>
+<tr><td>prompts</td><td>Same batch length and order as paths, with host sample IDs preserved independently of filenames.</td></tr>
+<tr><td>metadata</td><td>One independent dictionary per sample. Supply update_step (or the supported global_step/step aliases) and max_steps for the intended warmup. No progress metadata means step zero, which changes phase gating.</td></tr>
+<tr><td>scores</td><td>Metric name → list of scalars. Select emo_total once; EQ is its alias after fusion. Through multi_video_score, metric names are prefixed (for example emo_reward_emo_total) and avg is the configured aggregate.</td></tr>
+<tr><td>Failure</td><td>The scorer can emit NaN per failed sample. Validate output length and finiteness; use the host's explicit failure/masking policy instead of silently substituting neutral or zero rewards.</td></tr>
+</tbody></table><p>The upstream batch loop uses zip; a short prompts/metadata list can silently truncate scoring. <a href="../examples/host_adapter.py">The example adapter</a> checks cardinality first.</p></section>
+<section id="fusion"><h2>Fusion invariants</h2><pre>a_k = w0_k × g_k × m_k
+R_emo = sum(active positive-weight a_k × s_k) / max(sum(a_k), 1e-8)
+R_total = (alpha × R_vid + beta × R_emo) / max(abs(alpha) + abs(beta), 1e-8)</pre>
+<p>Preserve the actual fallback order in ReflectionRewarder.reflect: positive-weight active providers, then motion if active, then available providers with base weights, then auxiliary channel alignment if present, otherwise zero. The compact formula alone does not specify these branches. With nonnegative alpha/beta, the total denominator is their sum. If VideoAlign is absent or fails, the code can retain the emotion/physics result; record that degraded mode.</p>
+<p>Seven fusion providers: <code>macro, micro, body, temporal, clip_autt, r1omni, motion</code>. Chromatic and kinetic are auxiliary logged channels in the runtime fusion path. The nine-key analysis memory is a different calculation domain; do not inject two new fusion providers merely because they appear in TOOL_KEYS.</p>
+<p>Provider weights and gates are applied only over valid/active support. Do not infer validity from a score of 0.5, a filename, or successful import. ReflectionRewarder.reflect exposes activity, gates, confidence, and fallback details internally; preserve or instrument those details at the host boundary when testing degraded operation. The batch output alone does not expose all those flags.</p></section>
+<section id="lifetime"><h2>Lifetime and optimizer boundary</h2><ul>
+<li>Create the scorer once per reward-owning worker, reuse it across batches, and record resolved configuration. Heavy model loading is lazy and may fail only on the first real score.</li>
+<li>The SAGE integration only scores on sequence-parallel leaders and distributes results to the group. Preserve the host's corresponding ownership and ordering; do not initialize heavy providers on every rank by copying launcher assumptions.</li>
+<li>Use the reward as a scalar signal to the host optimizer. Preserve the host's advantage normalization, group size, and KL handling. Generator updates do not imply reward-model updates.</li>
+<li>If emo_total already includes VideoAlign, adding the same general-video reward again changes the objective. Either use that fused result once, or deliberately disable internal fusion and define the host mixture.</li>
+<li>Random and round-robin policies have state and randomness; keep scorer lifetime and seed controls stable for comparisons.</li></ul></section>
+
+</main></body></html>

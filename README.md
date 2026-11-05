@@ -28,6 +28,16 @@ We cast emotional video-generation RL as a problem of **trusting the right emoti
 
 - **Cross-run self-evolution — reusable training experience.** We introduce a paradigm for multimodal post-training in which a completed training run informs reward allocation in the next, making experience reusable at the run level. Experiments span three video RL algorithms and two image backbones, alongside ablations and human evaluations.
 
+## Quick start for agents
+
+This README is the human-readable guide. For coding agents, our [HTML integration hub](./agent/index.html) provides focused skills for understanding EmoReward's design, adapting its reward interface, and integrating it into your own project. The [repository map](./agent/README.md) lives alongside the agent kit.
+
+Give your agent this instruction in your project:
+
+```text
+Use https://github.com/Tencent-Hunyuan/EmoReward: read agent/index.html and follow its linked skills to integrate EmoReward into my current project, preserving the host training loop and validating the reward contract before running training; report the integration and evidence as HTML.
+```
+
 ## Abstract
 
 Group Relative Policy Optimization (GRPO) has advanced generative model post-training in verifiable
@@ -58,6 +68,7 @@ SD 3.5 and FLUX further support adaptive reward calibration for visual generatio
 ## Table of Contents
 
 - [Highlights](#highlights)
+- [Quick start for agents](#quick-start-for-agents)
 - [Abstract](#abstract)
 - [Plan · Act · Reflect · Evolve](#plan--act--reflect--evolve)
 - [Installation](#installation)
@@ -65,7 +76,6 @@ SD 3.5 and FLUX further support adaptive reward calibration for visual generatio
 - [Quickstart: Train with EmoReward](#quickstart-train-with-emoreward)
 - [Reward Policies (Ablation Ladder)](#reward-policies-ablation-ladder)
 - [Key Parameters](#key-parameters)
-- [Repository Layout](#repository-layout)
 - [Acknowledgements](#acknowledgements)
 - [License](#license)
 - [Citation](#citation)
@@ -284,34 +294,6 @@ group `G=4`. Constraint:
 > **Planner credentials:** the Gemini Plan backend (optional, off by default) reads gateway keys
 > from `EMO_REWARD_PLAN_API_APP_IDS` and `EMO_REWARD_PLAN_API_KEY_<app_id>`. No credentials are
 > shipped in this repo.
-
-## Repository Layout
-
-```text
-EmoReward/
-├── post_train.py                     # GRPO training entry
-├── run_emoreward.sh                  # one-command pipeline: Reflect (ref run) -> Evolve -> EmoReward
-├── run_post_train_multinode.sh       # multi-node launcher
-├── scripts/
-│   ├── setup_reward_subpackages.sh   # fetch provider code (no weights)
-│   ├── post_train/{train_grpo,pdsh_train}.sh
-│   └── {build_reward_traces,export_jit_gate_table,offline_gate_ladder,jit_reward_calibration}.py
-├── hyvideo/
-│   ├── utils/grpo_utils.py           # GRPO rollout + advantages (Eq. 1–2)
-│   └── models/reward_models/
-│       ├── rewards.py                # reward dispatch (reward_model="emo_reward")
-│       └── emo_reward/               # the EmoReward reward model
-│           ├── react_reward.py       # Plan / Act / Reflect + EmoRewardScorer
-│           ├── reward_memory.py      # Evolve: RewardMemory (Eq. 10–11)
-│           ├── emotion_scorers.py    # CLIP-AUTT + R1-Omni providers
-│           ├── openface_adapter.py   # OpenFace-3.0 AU/gaze/landmarks
-│           ├── motion_naturalness.py # kinetic / motion primitive
-│           ├── gemini_planner.py     # optional external Plan backend
-│           └── {CLIP-AUTT, R1-Omni, OpenFace-3.0, facial-landmarks-recognition}/  # external (setup script)
-├── assets/Visual_Results/            # 25 MP4s, poster frames, method figures, and gallery README
-├── REWARD_SUBPACKAGES.md             # provider code + weight download guide
-└── checkpoints-download.md           # base model + VideoReward download guide
-```
 
 ## Acknowledgements
 

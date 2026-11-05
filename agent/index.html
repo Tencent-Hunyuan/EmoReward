@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EmoReward agent integration hub · EmoReward agents</title><style>body{font:16px/1.65 system-ui,sans-serif;color:#1f2937;background:#f6f8fb;margin:0}main{max-width:1020px;margin:32px auto;background:white;padding:32px;border:1px solid #dae0e8;border-radius:12px}a{color:#1555a2}nav{display:flex;flex-wrap:wrap;gap:8px 20px;border-bottom:1px solid #dae0e8;padding-bottom:16px}h1,h2,h3{line-height:1.25}h2{margin-top:30px}code,pre{background:#f1f4f9;border-radius:5px}code{padding:2px 4px}pre{padding:16px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid #d5dce5;padding:8px 12px;text-align:left;vertical-align:top}.note{border-left:3px solid #486ab5;padding:8px 16px;background:#f4f7fd}.routes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}.route{border:1px solid #dae0e8;border-radius:8px;padding:16px}small{color:#64748b}@media(max-width:600px){main{margin:0;border:0;padding:20px}}</style></head><body><main><nav aria-label="Agent navigation"><a href="index.html">Agent hub</a></nav><h1>EmoReward agent integration hub</h1>
+
+<p class="note" data-role="entry-contract">Purpose: integrate EmoReward's evidence calibration into the current host project. Read this HTML source directly; JavaScript and a browser are not required. The JSON block below is the routing manifest. SKILL.md files are compatibility entrypoints; HTML pages carry the detailed contracts and handoffs.</p>
+<section id="start"><h2>Start with the host, then choose one route</h2>
+<ol><li>Identify the host repository, its instructions, modality, reward callback, sample grouping, device ownership, and requested scope. Use an existing authorized checkout or retrieve this repository if accessible; an inaccessible repository is missing context, not permission to invent its contents.</li>
+<li>Read the <a href="contracts/reward.html">reward contract</a>. Inspect the exact source symbols linked from the <a href="references/code-map.html">code map</a> before editing a host integration.</li>
+<li>Load only the skill and HTML workflow needed for the request. Add the memory route only when cross-run calibration is part of the task.</li>
+<li>Run the offline source audit, adapt the host reward seam, and use the <a href="workflows/verify.html">verification ladder</a>. Deliver an <a href="templates/handoff.html">HTML handoff</a> with evidence and explicit unrun checks.</li></ol></section>
+<section id="routes"><h2>Task routes</h2><div class="routes">
+<article class="route"><h3>Port the reward</h3><p>Use the existing generator and optimizer. Adapt the scoring boundary and retain active-set fusion.</p><a href="skills/emoreward-port/SKILL.md">Load emoreward-port</a> · <a href="workflows/port.html">Workflow</a></article>
+<article class="route"><h3>Reuse completed-run experience</h3><p>Construct or attach a fixed table, record outcome provenance, and freeze it for the next run.</p><a href="skills/emoreward-memory/SKILL.md">Load emoreward-memory</a> · <a href="workflows/memory.html">Workflow</a></article>
+<article class="route"><h3>Verify the port</h3><p>Separate structural checks, synthetic interface tests, real scoring, and measured training outcomes.</p><a href="skills/emoreward-verify/SKILL.md">Load emoreward-verify</a> · <a href="workflows/verify.html">Workflow</a></article>
+</div></section>
+<section id="essentials"><h2>Design to preserve</h2><dl>
+<dt>Plan / Act / Reflect</dt><dd>Ground emotional intent, observe heterogeneous evidence, then calibrate trust for the current video. Act evaluates an already generated video; it does not generate it.</dd>
+<dt>RewardMemory / Evolve</dt><dd>A completed run supplies reliability evidence for bounded weight multipliers used in a later run. The released training route reads a fixed table; it does not update reward-model parameters or write back online.</dd>
+<dt>Unavailable evidence</dt><dd>Validity and activity determine fusion support. A neutral score such as 0.5 does not establish provider availability.</dd>
+<dt>Scope of transfer</dt><dd>The released scorer consumes video paths. An image, tensor-native, asynchronous service, or other modality needs an explicit adapter and validation; the research transfer claim is not a universal runtime API.</dd></dl></section>
+<section id="audit"><h2>Offline source audit</h2><pre>python3 agent/tools/audit.py --output /tmp/emoreward-audit.html</pre><p>The standard-library audit checks source identity, symbols, HTML routes, and the seven-provider contract. It imports no model, downloads no weights, and does not establish scoring quality or host integration success. If source hashes drift, inspect the changes and update this kit's manifest only after reconciling its guidance.</p></section>
+<section id="resources"><h2>Resources</h2><ul><li><a href="examples/host_adapter.py">Host adapter example</a>: strict batch alignment and finite scalar output; real model setup is intentionally deferred.</li><li><a href="../checkpoints-download.md">Checkpoint configuration</a> and <a href="../REWARD_SUBPACKAGES.md">provider packages and weights</a></li><li><a href="README.md">Repository layout</a> and <a href="../LICENSE">upstream license</a></li></ul></section>
+<script type="application/json" id="emoreward-agent-manifest">{
+  "format": "emoreward-agent-hub/v1",
+  "repository": "https://github.com/Tencent-Hunyuan/EmoReward",
+  "source_commit": "8060b0ca5d08d4127002c49faa764ad5b9a2ca5e",
+  "entrypoint": "agent/index.html",
+  "communication": "HTML with embedded application/json; no Markdown handoff required",
+  "routes": [
+    {
+      "intent": "Integrate into a host training or inference project",
+      "skill": "skills/emoreward-port/SKILL.md",
+      "documents": [
+        "contracts/reward.html",
+        "workflows/port.html"
+      ]
+    },
+    {
+      "intent": "Build or attach a frozen RewardMemory table",
+      "skill": "skills/emoreward-memory/SKILL.md",
+      "documents": [
+        "workflows/memory.html"
+      ]
+    },
+    {
+      "intent": "Validate or diagnose an integration",
+      "skill": "skills/emoreward-verify/SKILL.md",
+      "documents": [
+        "workflows/verify.html"
+      ]
+    }
+  ],
+  "documents": [
+    "index.html",
+    "contracts/reward.html",
+    "workflows/port.html",
+    "workflows/memory.html",
+    "workflows/verify.html",
+    "references/code-map.html",
+    "templates/handoff.html"
+  ],
+  "sources": [
+    {
+      "id": "scoring",
+      "path": "hyvideo/models/reward_models/emo_reward/react_reward.py",
+      "sha256": "0fdf705844ea9aeb17e24e1f1346ade7dd5c01f895021f811dfa65401e4d1e77",
+      "symbols": {
+        "EmotionPlanner.plan": 119,
+        "PhysicalObserver.observe": 272,
+        "ReflectionRewarder.reflect": 485,
+        "ReflectionRewarder._effective_gates": 744,
+        "EmoRewardScorer.__call__": 1234,
+        "emo_reward_score": 1398
+      }
+    },
+    {
+      "id": "dispatch",
+      "path": "hyvideo/models/reward_models/rewards.py",
+      "sha256": "be2266cf5e55f566bfb3d89eed8f548d58ea5a93600ecb162ad8f98e363fe2ca",
+      "symbols": {
+        "multi_video_score": 284,
+        "get_reward_fn": 454,
+        "create_reward_fn_from_config": 643
+      }
+    },
+    {
+      "id": "memory",
+      "path": "hyvideo/models/reward_models/emo_reward/reward_memory.py",
+      "sha256": "c913d26bb55139c5384b6e3bbd23be57b3c4311621753457103aea77cf7d4e3b",
+      "symbols": {
+        "RewardTrace": 67,
+        "RewardMemory.tool_advantages": 187,
+        "RewardMemory.calibrated_weights": 201
+      }
+    },
+    {
+      "id": "trace-builder",
+      "path": "scripts/build_reward_traces.py",
+      "sha256": "fdb64ad9ea6279e3fcda84393fa1a4d8505646ab58d13bb49ee857f7d0f20a08",
+      "symbols": {
+        "_proxy_signature": 73,
+        "main": 105
+      }
+    },
+    {
+      "id": "table-export",
+      "path": "scripts/export_jit_gate_table.py",
+      "sha256": "e5616b891ddea7dbd47baff3f936fac2fe3a148a3303d8cb5f10d7cf2fd4777e",
+      "symbols": {
+        "_regime": 46,
+        "_multipliers": 51,
+        "main": 67
+      }
+    },
+    {
+      "id": "rollouts",
+      "path": "hyvideo/utils/grpo_utils.py",
+      "sha256": "14ef9dbc2d81bfd18392c14f03fdfe8d7fd8ba55d90c5ab9204d325f9a6acd11",
+      "symbols": {
+        "prepare_samples_online": 386
+      }
+    },
+    {
+      "id": "providers",
+      "path": "hyvideo/models/reward_models/emo_reward/emotion_scorers.py",
+      "sha256": "fe5c110cf83bab1f5609d3f9d8588d95840a0ee4d9fae55270922a21bbe18e76",
+      "symbols": {}
+    },
+    {
+      "id": "face",
+      "path": "hyvideo/models/reward_models/emo_reward/openface_adapter.py",
+      "sha256": "34054523401542e6c731ac86287900b1bf93ff946bdc21e65b0cd72660c42724",
+      "symbols": {}
+    },
+    {
+      "id": "motion",
+      "path": "hyvideo/models/reward_models/emo_reward/motion_naturalness.py",
+      "sha256": "926d1d69444b3893d9f0649f22ffe7ab8199490cc11e97791af06ad8bde25cb0",
+      "symbols": {}
+    },
+    {
+      "id": "planner",
+      "path": "hyvideo/models/reward_models/emo_reward/gemini_planner.py",
+      "sha256": "741c70a80cf4814d899c525f2bd163dff0a07396a4b485c1600cc71bb218ca34",
+      "symbols": {}
+    },
+    {
+      "id": "launcher",
+      "path": "run_emoreward.sh",
+      "sha256": "21e3ed80e052d2f6dee0d7b6e2b16c3dce63ae997b370a68a6fb7afad50ec728",
+      "symbols": {}
+    },
+    {
+      "id": "training-config",
+      "path": "scripts/post_train/train_grpo.sh",
+      "sha256": "0ad13251ccd49f36ac2407aa20bc5df87aaf147ec9904df33b863e28866b4cdc",
+      "symbols": {}
+    },
+    {
+      "id": "packages",
+      "path": "scripts/setup_reward_subpackages.sh",
+      "sha256": "0916d2c06e68b5b82c0d4c8aabbbe7728036db8731f5154081f53009633706ae",
+      "symbols": {}
+    }
+  ],
+  "gate_tools": [
+    "macro",
+    "micro",
+    "body",
+    "temporal",
+    "clip_autt",
+    "r1omni",
+    "motion"
+  ],
+  "analysis_tools": [
+    "macro",
+    "micro",
+    "body",
+    "temporal",
+    "chromatic",
+    "kinetic",
+    "clip_autt",
+    "r1omni",
+    "motion"
+  ]
+}</script>
+</main></body></html>
