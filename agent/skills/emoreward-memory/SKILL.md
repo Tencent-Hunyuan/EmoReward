@@ -9,4 +9,6 @@ Keep the seven-provider exporter/runtime and the nine-channel retrieval analysis
 
 A completed reference run precedes export; the next training run reads a frozen table. Detect missing/invalid tables and sparse-regime fallback. Do not turn the released recipe into an online writeback loop or count agreement with its own fused reward as independent validation.
 
+For a custom provider set or context partition, follow the [custom-memory guide](../../workflows/memory.html#custom-memory). Reconcile observer, gates, trace schema, exporter and runtime keys together; configuration alone does not extend the fixed video schema.
+
 Report table hash, reference identity, outcome source and resolved eta/tau/cap in the [HTML handoff](../../templates/handoff.html). Verify behavior using the [verification workflow](../../workflows/verify.html).

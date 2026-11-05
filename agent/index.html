@@ -1,7 +1,8 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EmoReward agent integration hub · EmoReward agents</title><style>body{font:16px/1.65 system-ui,sans-serif;color:#1f2937;background:#f6f8fb;margin:0}main{max-width:1020px;margin:32px auto;background:white;padding:32px;border:1px solid #dae0e8;border-radius:12px}a{color:#1555a2}nav{display:flex;flex-wrap:wrap;gap:8px 20px;border-bottom:1px solid #dae0e8;padding-bottom:16px}h1,h2,h3{line-height:1.25}h2{margin-top:30px}code,pre{background:#f1f4f9;border-radius:5px}code{padding:2px 4px}pre{padding:16px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid #d5dce5;padding:8px 12px;text-align:left;vertical-align:top}.note{border-left:3px solid #486ab5;padding:8px 16px;background:#f4f7fd}.routes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}.route{border:1px solid #dae0e8;border-radius:8px;padding:16px}small{color:#64748b}@media(max-width:600px){main{margin:0;border:0;padding:20px}}</style></head><body><main><nav aria-label="Agent navigation"><a href="index.html">Agent hub</a></nav><h1>EmoReward agent integration hub</h1>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EmoReward agent integration hub · EmoReward agents</title><style>body{overflow-wrap:anywhere;font:16px/1.65 system-ui,sans-serif;color:#1f2937;background:#f6f8fb;margin:0}main{max-width:1020px;margin:32px auto;background:white;padding:32px;border:1px solid #dae0e8;border-radius:12px}a{color:#1555a2}nav{display:flex;flex-wrap:wrap;gap:8px 20px;border-bottom:1px solid #dae0e8;padding-bottom:16px}h1,h2,h3{line-height:1.25}h2{margin-top:30px}code,pre{background:#f1f4f9;border-radius:5px}code{padding:2px 4px}pre{padding:16px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere}table{border-collapse:collapse;width:100%;display:block;overflow:auto}th,td{border:1px solid #d5dce5;padding:8px 12px;text-align:left;vertical-align:top}.note{border-left:3px solid #486ab5;padding:8px 16px;background:#f4f7fd}.routes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}.route{border:1px solid #dae0e8;border-radius:8px;padding:16px}small{color:#64748b}@media(max-width:600px){main{margin:0;border:0;padding:20px}}</style></head><body><main><nav aria-label="Agent navigation"><a href="index.html">Agent hub</a></nav><h1>EmoReward agent integration hub</h1>
 
 <p class="note" data-role="entry-contract">Purpose: integrate EmoReward's evidence calibration into the current host project. Read this HTML source directly; JavaScript and a browser are not required. The JSON block below is the routing manifest. SKILL.md files are compatibility entrypoints; HTML pages carry the detailed contracts and handoffs.</p>
+<section id="capabilities"><h2>What to reuse in your project</h2><p>EmoReward calibrates trust in heterogeneous reward evidence at two timescales: Reflect selects useful evidence for the current sample; Evolve turns completed-run reliability into bounded, frozen multipliers for a later run. Keep the host generator and optimizer, and integrate at its reward boundary.</p><p>For a private video project, reuse compatible observers and define the project's own criteria and outcomes. For other modalities, adapt the observers and context definitions explicitly. Follow the <a href="workflows/port.html#customize">customization guide</a> for the decisions that change, and the <a href="workflows/memory.html#custom-memory">custom-memory guide</a> for schema and regime changes. The <a href="README.md">README overview</a> includes examples and a starter instruction.</p></section>
 <section id="start"><h2>Start with the host, then choose one route</h2>
 <ol><li>Identify the host repository, its instructions, modality, reward callback, sample grouping, device ownership, and requested scope. Use an existing authorized checkout or retrieve this repository if accessible; an inaccessible repository is missing context, not permission to invent its contents.</li>
 <li>Read the <a href="contracts/reward.html">reward contract</a>. Inspect the exact source symbols linked from the <a href="references/code-map.html">code map</a> before editing a host integration.</li>
@@ -18,7 +19,7 @@
 <dt>Unavailable evidence</dt><dd>Validity and activity determine fusion support. A neutral score such as 0.5 does not establish provider availability.</dd>
 <dt>Scope of transfer</dt><dd>The released scorer consumes video paths. An image, tensor-native, asynchronous service, or other modality needs an explicit adapter and validation; the research transfer claim is not a universal runtime API.</dd></dl></section>
 <section id="audit"><h2>Offline source audit</h2><pre>python3 agent/tools/audit.py --output /tmp/emoreward-audit.html</pre><p>The standard-library audit checks source identity, symbols, HTML routes, and the seven-provider contract. It imports no model, downloads no weights, and does not establish scoring quality or host integration success. If source hashes drift, inspect the changes and update this kit's manifest only after reconciling its guidance.</p></section>
-<section id="resources"><h2>Resources</h2><ul><li><a href="examples/host_adapter.py">Host adapter example</a>: strict batch alignment and finite scalar output; real model setup is intentionally deferred.</li><li><a href="../checkpoints-download.md">Checkpoint configuration</a> and <a href="../REWARD_SUBPACKAGES.md">provider packages and weights</a></li><li><a href="README.md">Repository layout</a> and <a href="../LICENSE">upstream license</a></li></ul></section>
+<section id="resources"><h2>Resources</h2><ul><li><a href="examples/host_adapter.py">Host adapter example</a>: strict batch alignment and finite scalar output; real model setup is intentionally deferred.</li><li><a href="../checkpoints-download.md">Checkpoint configuration</a> and <a href="../REWARD_SUBPACKAGES.md">provider packages and weights</a></li><li><a href="README.md">Capability overview and repository layout</a> and <a href="../LICENSE">upstream license</a></li></ul></section>
 <script type="application/json" id="emoreward-agent-manifest">{
   "format": "emoreward-agent-hub/v1",
   "repository": "https://github.com/Tencent-Hunyuan/EmoReward",
@@ -27,18 +28,20 @@
   "communication": "HTML with embedded application/json; no Markdown handoff required",
   "routes": [
     {
-      "intent": "Integrate into a host training or inference project",
+      "intent": "Integrate into a host project or adapt custom providers and contexts",
       "skill": "skills/emoreward-port/SKILL.md",
       "documents": [
         "contracts/reward.html",
-        "workflows/port.html"
+        "workflows/port.html",
+        "workflows/port.html#customize"
       ]
     },
     {
       "intent": "Build or attach a frozen RewardMemory table",
       "skill": "skills/emoreward-memory/SKILL.md",
       "documents": [
-        "workflows/memory.html"
+        "workflows/memory.html",
+        "workflows/memory.html#custom-memory"
       ]
     },
     {
